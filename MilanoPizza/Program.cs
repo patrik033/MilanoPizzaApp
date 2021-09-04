@@ -6,12 +6,13 @@ using System.Threading;
 
 namespace MilanoPizza
 {
-    class Program : Drink
+    class Program
     {
 
         private static List<Pizza> pizzaList = new List<Pizza>();
-        private static Pizza myPizza = new Pizza();
+        private static Pizza myPizza;
         private static Drink myDrink = new Drink();
+        private int counter = 0;
         static void Main(string[] args)
         {
             
@@ -20,24 +21,36 @@ namespace MilanoPizza
             string output = Message(welcomeMessage);
             if(output.Trim().ToLower() == "y")
             {
-                while (output != "3")
+                while (output != "4")
                 {
                     Menu();
                     output = Message("What do you want to order: ");
                     switch (output)
                     {
                         case "1":
+                            myPizza = new Pizza();
                             myPizza.OrderPizza();
                             pizzaList.Add(myPizza);
+                            
                             break;
                         case "2":
                             myDrink.OrderDrink();
                             break;
+                        case "3":
+                            Console.Clear();
+                            foreach (var item in pizzaList)
+                            {
+                                item.ReturnMessage();
+                            }
+                            break;
                     }
                 } 
             }
+
+
+            
             GoodByeMessage();
- 
+            
             Console.ReadLine();
 
 
@@ -123,7 +136,8 @@ namespace MilanoPizza
         {
             Console.WriteLine("1) Order a Pizza");
             Console.WriteLine("2) Order Something to drink");
-            Console.WriteLine("3) Leave the pizza");
+            Console.WriteLine("3) Print Pizza list");
+            Console.WriteLine("4) Quit");
         }
         private static void GoodByeMessage()
         {

@@ -15,7 +15,7 @@
             Console.WriteLine("Hello to the Pizza Ordering form");
             string pizzaType = MessageForm("What Size Pizza do you want (small/medium/large): ");
             SizeDecision(pizzaType);
-            FinalCost += CalculateCost();
+            FinalCost = CalculateCost();
             ReturnMessage();
         }
 
